@@ -102,6 +102,22 @@ public class T9Fragment extends Fragment {
         super.onDestroyView();
     }
 
+    /**
+     * 此方法目前仅适用于标示ViewPager中的Fragment是否真实可见
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(keyboardManagerNumber == null){return;}
+        if (!isVisibleToUser ) {
+            keyboardManagerNumber.hideKeyboard();
+        }else{
+            mInputPhone.setFocusable(true);
+            mInputPhone.setFocusableInTouchMode(true);
+            mInputPhone.requestFocus();
+        }
+    }
+
     private KeyboardManager keyboardManagerNumber;
     private void initNumberKeyboard() {
         numberKeyboard = new NumberKeyboard(getContext(),NumberKeyboard.DEFAULT_NUMBER_XML_LAYOUT);

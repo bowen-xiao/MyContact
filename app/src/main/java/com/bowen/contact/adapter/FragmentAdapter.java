@@ -15,7 +15,15 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = myPager.get(position);
         if(fragment == null){
-            fragment =  T9Fragment.newInstance(mTitleArray[position],String.valueOf(position));
+            switch (position){
+                case 0 :
+                    fragment =  T9Fragment.newInstance(mTitleArray[position],String.valueOf(position));
+                    break;
+                default:
+                    fragment =  ContactFragment.newInstance(mTitleArray[position],String.valueOf(position));
+                    break;
+            }
+
         }
         return fragment;
     }
